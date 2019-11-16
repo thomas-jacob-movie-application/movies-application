@@ -3,12 +3,32 @@
     {
       "title": "Casablanca",
       "rating": "4",
-      "id": 1
+      "id": 1,
+      "image": "img/casa.jpg"
     },
     {
       "title": "Star Wars: A New Hope",
       "rating": "5",
-      "id": 2
+      "id": 2,
+      "image": "../img/newHope.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Darjeeling Limited",
+      "rating": "5",
+      "image": "img/darjeeling.jpg"
+    },
+    {
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "id": 6
+    },
+    {
+      "id": 7
     }
   ]
 }

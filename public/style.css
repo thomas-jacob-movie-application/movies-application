@@ -8,3 +8,9 @@ html, body {
     transform: translateY(-100%);
     text-align: center;
 }
+.card {
+    height: 400px;
+}
+img  {
+    height: 65%;
+}
