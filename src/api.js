@@ -37,7 +37,7 @@ module.exports = {
   //   },
   //
   //delete movie data
-    deleteMovie : () => {
+    deleteMovie : (id) => {
       return fetch(`api/movies/${id}`, {
         method: 'DELETE',
         headers: {

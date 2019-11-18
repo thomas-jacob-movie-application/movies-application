@@ -7,42 +7,58 @@
  * require style imports
  */
 
+
+
+
+
 const {getMovie, getMovies, createMovie, patchMovie, deleteMovie} = require('./api.js');
+
 
 //************************
 //      GET MOVIES
 //************************
 
 getMovies()
-    // .then(() => {
-    // })
+// .then(() => {
+// })
     .then((movies) => {
-      console.log('Here are all the movies:');
-      $('#preloader').html("");
-      movies.forEach(({title, rating, id, image}) => {
-          $('#movieHolder').append(`
-            <div class="card col-md-3 p-1">
-               <img src=${image} alt="yes">
-               <h1>${title}</h1>
-               <h3>Rating: ${rating} stars</h3>
-               <i class="far fa-trash-alt trash"></i>
-          </div>
-         `)
-          console.log(`id#${id} - ${title} - rating: ${rating}`);
+        console.log('Here are all the movies:');
+        $('#preloader').html("");
+        let i = 0;
+        movies.forEach(({title, rating, id, image}) => {
 
-      });
+            $('#movieHolder').append(`
+                <div class="card col-md-3 p-1" id="${id}">
+                   <img src=${image} alt="yes">
+                   <h1>${title}</h1>
+                   <h3>Rating: ${rating} stars</h3>
+                   <i class="far fa-trash-alt trash"></i>           
+              </div>
+            `);
+            $('.trash').click(function () {
+                    let idVariable = $(this).parent().attr('id');
+                    deleteMovie(idVariable);
+                getMovies();
+
+                // }).catch((error) => {
+                //     alert('Oh no! Something went wrong.\nCheck the console for details.');
+                //     console.log(error);
+            });
+            console.log(`id#${id} - ${title} - rating: ${rating}`);
+        });
     }).catch((error) => {
     alert('Oh no! Something went wrong.\nCheck the console for details.');
     console.log(error);
-});
 
+
+});
 
 //************************
 //      SPECIFY ONE MOVIE
 //************************
 
 
-$('#searchButton').on('click',(e) => {
+$('#searchButton').on('click', (e) => {
     e.preventDefault();
     getMovies()
         .then((movies) => {
@@ -97,13 +113,6 @@ $('#searchButton').on('click',(e) => {
 //************************
 //      DELETE MOVIE
 //************************
-let idVariable = `api/movies/${id}`;
-$('.trash').on('click',() => {
-    $(this).deleteMovie(idVariable);
-    }).catch((error) => {
-        alert('Oh no! Something went wrong.\nCheck the console for details.');
-        console.log(error);
-    });
 
 
 
