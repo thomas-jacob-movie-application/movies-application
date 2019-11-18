@@ -8,22 +8,19 @@ module.exports = {
 
     },
 
-  // //get movie based on id
-  //   getMovie: (title) => {
-  //     return fetch(`/api/movies/${title}`)
-  //         .then(response => response.json())
-  //   },
-  //
-  // //post movie data
-  //   createMovie: (movie) => {
-  //     return fetch('/api/movies', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/db.json'
-  //       },
-  //       body: JSON.stringify(movie)
-  //     })
-  //   },
+
+    postMovie : (movie) => {
+        return fetch('api/movies', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(movie),
+        })
+    },
+
+
+
   //
   // //edit movie data
   //   patchMovie : (movie, id) => {
@@ -36,6 +33,8 @@ module.exports = {
   //     })
   //   },
   //
+
+
   //delete movie data
     deleteMovie : (id) => {
       return fetch(`api/movies/${id}`, {

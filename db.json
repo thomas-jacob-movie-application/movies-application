@@ -1,3 +1,24 @@
 {
-  "movies": []
+  "movies": [
+    {
+      "title": "hello man",
+      "rating": "five",
+      "id": 1
+    },
+    {
+      "title": "hey david",
+      "rating": "five",
+      "id": 2
+    },
+    {
+      "title": "yesyesyes",
+      "rating": "one",
+      "id": 3
+    },
+    {
+      "title": "woop",
+      "rating": "one",
+      "id": 4
+    }
+  ]
 }
