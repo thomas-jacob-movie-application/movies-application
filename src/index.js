@@ -14,40 +14,48 @@ const {getMovie, getMovies, createMovie, patchMovie, deleteMovie} = require('./a
 //************************
 
 getMovies()
+    // .then(() => {
+    // })
     .then((movies) => {
       console.log('Here are all the movies:');
+      $('#preloader').html("");
       movies.forEach(({title, rating, id, image}) => {
-         $('#movieHolder').append(`
+          $('#movieHolder').append(`
             <div class="card col-md-3">
                <img src=${image} alt="yes">
                <h1>${title}</h1>
-               <h3>${rating}</h3>
+               <h3>Rating: ${rating} stars</h3>
          `)
           console.log(`id#${id} - ${title} - rating: ${rating}`);
+
       });
     }).catch((error) => {
-  alert('Oh no! Something went wrong.\nCheck the console for details.');
-  console.log(error);
+    alert('Oh no! Something went wrong.\nCheck the console for details.');
+    console.log(error);
 });
+
 
 //************************
 //      SPECIFY ONE MOVIE
 //************************
-//this doesn't exactly function right now without a solid query function
 
-    // $('#searchButton').on('click',(e) =>{
-    //     getMovie($('#searchText').val())
-    //         .then((movie) => {
-    //             console.log('Here is the first movie: ');
-    //             console.log(`id#${movie.id} - ${movie.title} - rating: ${movie.rating}`);
-    //         })
-    //         .catch((error) => {
-    //             alert('Oh no! Something went wrong.\nCheck the console for details.');
-    //             console.log(error);
-    //         });
-    //     e.preventDefault();
-    //
-    // })
+
+$('#searchButton').on('click',(e) => {
+    e.preventDefault();
+    getMovies()
+        .then((movies) => {
+            movies.forEach(({title, rating, id, image}) => {
+                if (title.toLowerCase() === $('#searchText').val().toLowerCase()) {
+                    $('#movieHolder').html(`
+                <div class="card col-md-3">
+               <img src=${image} alt="yes">
+               <h1>${title}</h1>
+               <h3>${rating}</h3>
+                `)
+                }
+            })
+        })
+});
 
 
 //************************
