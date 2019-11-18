@@ -36,14 +36,14 @@ module.exports = {
   //     })
   //   },
   //
-  // //delete movie data
-  //   deleteMovie : (id) => {
-  //     return fetch(`api/movies/${id}`, {
-  //       method: 'DELETE',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //     })
-  //   }
+  //delete movie data
+    deleteMovie : () => {
+      return fetch(`api/movies/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+    }
 
 }

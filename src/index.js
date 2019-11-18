@@ -21,10 +21,12 @@ getMovies()
       $('#preloader').html("");
       movies.forEach(({title, rating, id, image}) => {
           $('#movieHolder').append(`
-            <div class="card col-md-3">
+            <div class="card col-md-3 p-1">
                <img src=${image} alt="yes">
                <h1>${title}</h1>
                <h3>Rating: ${rating} stars</h3>
+               <i class="far fa-trash-alt trash"></i>
+          </div>
          `)
           console.log(`id#${id} - ${title} - rating: ${rating}`);
 
@@ -45,12 +47,14 @@ $('#searchButton').on('click',(e) => {
     getMovies()
         .then((movies) => {
             movies.forEach(({title, rating, id, image}) => {
-                if (title.toLowerCase() === $('#searchText').val().toLowerCase()) {
+                if (title.toLowerCase().includes($('#searchText').val().toLowerCase())) {
                     $('#movieHolder').html(`
                 <div class="card col-md-3">
-               <img src=${image} alt="yes">
-               <h1>${title}</h1>
-               <h3>${rating}</h3>
+                   <img src=${image} alt="yes">
+                   <h1>${title}</h1>
+                   <h3>Rating: ${rating} stars</h3>
+                     <i class="far fa-trash-alt trash"></i>
+                </div>
                 `)
                 }
             })
@@ -93,14 +97,15 @@ $('#searchButton').on('click',(e) => {
 //************************
 //      DELETE MOVIE
 //************************
+let idVariable = `api/movies/${id}`;
+$('.trash').on('click',() => {
+    $(this).deleteMovie(idVariable);
+    }).catch((error) => {
+        alert('Oh no! Something went wrong.\nCheck the console for details.');
+        console.log(error);
+    });
 
-// deleteMovie(4).then(getMovies).then((movies) => {
-//   console.log('Here are all the books:');
-//   movies.forEach(({title, rating}) => {
-//     console.log(`Title: ${title}
-//     Rating: ${rating}`);
-//   });
-// }).catch((error) => {
-//   alert('Oh no! Something went wrong.\nCheck the console for details.');
-//   console.log(error);
-// });
+
+
+
+
