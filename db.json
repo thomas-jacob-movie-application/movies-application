@@ -1,19 +1,24 @@
 {
   "movies": [
     {
-      "title": "hercules",
-      "rating": "5",
+      "title": "gladiator",
+      "rating": "1",
       "id": 1
     },
     {
-      "title": "hercules",
-      "rating": "5",
-      "id": 6
+      "title": "hello",
+      "rating": "1",
+      "id": 2
     },
     {
-      "title": "hercules",
-      "rating": "5",
-      "id": 7
+      "title": "yes please",
+      "rating": "2",
+      "id": 3
+    },
+    {
+      "title": "nope",
+      "rating": "2",
+      "id": 4
     }
   ]
 }

@@ -19,10 +19,12 @@ module.exports = {
         })
     },
 
+    makePoster : (title) => {
+        return fetch(`http://www.omdbapi.com/?apikey=${omdbKey}&t=${title}`)
+            .then(movie => movie.json())
+    },
 
-
-  //
-  // //edit movie data
+   //edit movie data
     patchMovie : (movie, id) => {
       return fetch(`api/movies/${id}`, {
         method: 'PATCH',

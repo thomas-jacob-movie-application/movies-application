@@ -41,4 +41,10 @@ img  {
     border: 1px solid darkslategray;
     margin-left: 30%;
     padding: 2%;
+    position: relative;
+}
+#close {
+    position: absolute;
+    bottom: 1px;
+    right: 10px;
 }
