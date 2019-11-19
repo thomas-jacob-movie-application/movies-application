@@ -3,7 +3,7 @@ html, body {
 }
 body {
     font-family: 'Playfair Display', serif;
-    background: linear-gradient(to right, azure, linen)
+    background: linear-gradient(to right, azure, lightgrey)
 }
 
 .container {
