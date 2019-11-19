@@ -5,16 +5,19 @@
     <title>Movie Search</title>
     <script src="https://kit.fontawesome.com/927b51fa66.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
 
-    <div class="jumbotron d-flex align-items-center bg-primary justify-content-center">
+    <div class="jumbotron d-flex align-items-center justify-content-center">
         <h1 class="display-4">Search for a Movie!</h1>
         <form id="searchForm" style="width: 400px" class="ml-4">
             <div class="d-flex justify-content-center align-items-center">
                 <input type="text" class="form-control" id="searchText" placeholder="Search By Movie Title">
                 <button type="submit" class="ml-1" id="searchButton">Search!</button>
+                <button type="submit" class="ml-1" id="resetButton">Reset!</button>
+
             </div>
         </form>
     </div>
@@ -22,17 +25,21 @@
         <h1>Loading, per your request.</h1>
         <img src="img/preloader.svg">
     </div>
-    <div id="addMovie" class="d-flex justify-content-center">
-        <label for="addText">Create a Movie!</label>
-        <input type="text" id="addText" placeholder="type movie name here!">
-        <select id="addSelect">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-        <button type="submit" id="addButton">Submit!</button>
+    <div id="addMovie" class="d-flex justify-content-center align-items-center flex-column">
+        <h3>Add a Movie!</h3>
+        <div>
+            <label for="addText" class="mr-1">Choose Your Movie:</label>
+            <input type="text" id="addText" placeholder="type movie name here!" class="mr-3">
+            <label for="addSelect">Rating:</label>
+            <select id="addSelect" class="mr-3 ml-2">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <button type="submit" id="addButton">Submit!</button>
+        </div>
     </div>
     <div class="popUp invisible">
         <label for="editText">Edit Your Movie!</label>

@@ -23,7 +23,7 @@ function summonAll() {
                             .then((data) => {
                                 let image = "'" + data.Poster + "'";
                                 $('#movieHolder').append(`
-                        <div class="card col-md-3 p-1" id="${id}">
+                        <div class="card col-md-3 p-1 mb-4" id="${id}">
                            <img src=${image}>
                            <h1>${title}</h1>
                            <h3>${rating} stars</h3>
@@ -34,16 +34,13 @@ function summonAll() {
                             })
                             .then((data) => {
                                 clickTrashFunction();
-
                             });
-                            })
+                        })
                 };
                 makeMoviesAppear(movies)
             });
     };
 summonAll();
-
-
 
 function clickTrashFunction () {
     $('.edit').off().on('click', function () {
@@ -104,8 +101,9 @@ $('#close').click(function() {
 
     }));
 
-
-
+$('#resetButton').click(() => {
+    summonAll();
+});
     //************************
     //      SPECIFY ONE MOVIE
     //************************
@@ -122,7 +120,7 @@ $('#close').click(function() {
                             .then((data) => {
                                 let image = "'" + data.Poster + "'";
                                 $('#movieHolder').html(`
-                        <div class="card col-md-3">
+                        <div class="card col-md-3 mr-4">
                            <img src=${image} alt="yes">
                            <h1>${title}</h1>
                            <div id="popUp"></div>

@@ -1,6 +1,10 @@
 html, body {
     height: 100%;
 }
+body {
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(to right, azure, linen)
+}
 
 .container {
     position: relative;
@@ -11,6 +15,11 @@ html, body {
 .card {
     height: 500px;
     position: relative;
+    margin-right: 2%;
+    box-shadow: 0 0 5px 2px darkslategray;
+}
+button {
+    box-shadow: 2px 2px 2px 0.005em darkslategray;
 }
 img  {
     height: 65%;
@@ -23,6 +32,7 @@ img  {
 }
 .jumbotron {
     height: 20%;
+    background-color: #e24748;
 }
 .invisible {
     display: none;
@@ -47,4 +57,7 @@ img  {
     position: absolute;
     bottom: 1px;
     right: 10px;
+}
+#addText {
+    border-radius: 5px;
 }
