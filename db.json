@@ -1,19 +1,9 @@
 {
   "movies": [
     {
-      "title": "adventure time",
-      "rating": "4",
+      "title": "roger's movie",
+      "rating": "5",
       "id": 10
-    },
-    {
-      "title": "batman",
-      "rating": "5",
-      "id": 11
-    },
-    {
-      "title": "gladiator",
-      "rating": "5",
-      "id": 12
     }
   ]
 }
