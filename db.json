@@ -1,24 +1,19 @@
 {
   "movies": [
     {
-      "title": "hello man",
-      "rating": "five",
+      "title": "test",
+      "rating": "1",
       "id": 1
     },
     {
-      "title": "hey david",
-      "rating": "five",
+      "title": "heck",
+      "rating": "2",
       "id": 2
     },
     {
-      "title": "yesyesyes",
-      "rating": "one",
+      "title": "hercules",
+      "rating": "3",
       "id": 3
-    },
-    {
-      "title": "woop",
-      "rating": "one",
-      "id": 4
     }
   ]
 }

@@ -26,15 +26,21 @@
         <label for="addText">Create a Movie!</label>
         <input type="text" id="addText" placeholder="type movie name here!">
         <select id="addSelect">
-            <option value="one">1</option>
-            <option value="two">2</option>
-            <option value="three">3</option>
-            <option value="four">4</option>
-            <option value="five">5</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
         </select>
         <button type="submit" id="addButton">Submit!</button>
     </div>
-    <div id="movieHolder" class="row d-flex justify-content-center">
+    <div class="popUp invisible">
+        <label for="editText">Edit Your Movie!</label>
+        <input type="text" id="editText" placeholder="type movie name here!">
+        <input type="text" id="editRating" placeholder="type rating here!">
+        <button type="submit" class="editButton">Submit!</button>
+    </div>
+    <div id="movieHolder" class="row d-flex justify-content-center m-4">
     </div>
     <script
       src="https://code.jquery.com/jquery-3.4.1.min.js"
