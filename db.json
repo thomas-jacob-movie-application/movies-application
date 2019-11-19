@@ -1,14 +1,9 @@
 {
   "movies": [
     {
-      "title": "batman",
-      "rating": "3",
-      "id": 3
-    },
-    {
-      "title": "batman",
-      "rating": "3",
-      "id": 4
+      "title": "die hard",
+      "rating": "4",
+      "id": 6
     }
   ]
 }

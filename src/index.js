@@ -13,7 +13,6 @@ $(document).ready(() => {
     // fetch get movie >> movie poster (http)
     // turn movie poster into var which contains img src
     // use variable in building divs
-
 function summonAll() {
         getMovies()
             .then((movies) => {
@@ -28,25 +27,26 @@ function summonAll() {
                            <img src=${image}>
                            <h1>${title}</h1>
                            <h3>${rating} stars</h3>
-                           <i class="far fa-trash-alt trash"></i>
-                           <i class="fas fa-edit edit"></i>
+                           <i class="far fa-trash-alt trash" id="${id}"></i>
+                           <i class="fas fa-edit edit"></i> 
                         </div>
                        `)
                             })
                             .then((data) => {
-                                clickTrashFunction()
+                                clickTrashFunction();
+
+                            });
                             })
-                    });
                 };
                 makeMoviesAppear(movies)
             });
-    }
+    };
 summonAll();
 
 
 
 function clickTrashFunction () {
-    $('.edit').on('click', function () {
+    $('.edit').off().on('click', function () {
         console.log("hi");
         let newId = $(this).parent().attr('id');
         console.log(newId);
@@ -65,21 +65,23 @@ function clickTrashFunction () {
             }, newId);
             $('#movieHolder').html("");
             $('#preloader').removeClass('invisible');
-            summonAll()
+            summonAll();
         });
-    })
-        $('.trash').click(function () {
-            let idVariable = $(this).parent().attr('id');
-            deleteMovie(idVariable);
-            $('#movieHolder').html("");
-            $('#preloader').removeClass("invisible");
-            summonAll()
-        });
-    }
-
-
-
-
+    });
+    getMovies()
+        .then((movies) => {
+            $('.trash').off().on('click',((e) =>{
+                let divId = (e.target.id);
+                deleteMovie(divId);
+                $('#movieHolder').html("");
+                $('#preloader').removeClass("invisible");
+                summonAll();
+            })) ;
+        })
+    };
+$('#close').click(function() {
+    $('.popUp').addClass('invisible');
+})
 
 
     //************************
@@ -87,7 +89,7 @@ function clickTrashFunction () {
     //************************
 
 
-    $('#addButton').click(() => {
+    $('#addButton').off().on('click',(() => {
         let newMovie = postMovie({
             "title": $('#addText').val(),
             "rating": $('#addSelect').val(),
@@ -96,11 +98,12 @@ function clickTrashFunction () {
         $('#preloader').removeClass('invisible');
         getMovies()
             .then((movies) => {
-                makeMoviesAppear(movies);
+                summonAll();
                 $('#preloader').addClass('invisible');
             });
 
-    });
+    }));
+
 
 
     //************************
@@ -115,7 +118,10 @@ function clickTrashFunction () {
             .then((movies) => {
                 movies.forEach(({title, rating, id, image}) => {
                     if (title.toLowerCase().includes($('#searchText').val().toLowerCase())) {
-                        $('#movieHolder').html(`
+                        makePoster(title)
+                            .then((data) => {
+                                let image = "'" + data.Poster + "'";
+                                $('#movieHolder').html(`
                         <div class="card col-md-3">
                            <img src=${image} alt="yes">
                            <h1>${title}</h1>
@@ -125,8 +131,12 @@ function clickTrashFunction () {
                              <i class="fas fa-edit edit"></i>
                         </div>
                         `)
+                            })
+                            .then((data) => {
+                                clickTrashFunction();
+                            })
                     }
                 })
             })
     });
-})
+});
