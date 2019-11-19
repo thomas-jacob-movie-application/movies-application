@@ -34,20 +34,36 @@ $(document).ready(() => {
                        <h1>${title}</h1>
                        <h3>Rating: ${rating} stars</h3>
                        <i class="far fa-trash-alt trash"></i> 
-                       <i class="fas fa-edit edit"></i>          
+                       <i class="fas fa-edit edit"></i>       
+                       <h6>${id}</h6>   
                   </div>
                 `);
                 });
-
                 $('.edit').on('click', function () {
-                    let newTitle = $(this).parent().children().first().next().html().substr(0, 200);
+                    let newId = $(this).parent().children().first().next().next().next().next().next().html();
+                    console.log(newId);
+                    let newTitle = $(this).parent().children().first().next().html().substr(0, 100);
                     console.log(newTitle);
-                    let newRating = $(this).parent().children().first().next().next().html().substr(7, 3);
+                    let newRating = $(this).parent().children().first().next().next().html().substr(7, 2);
                     console.log(newRating);
-                    $('.popUp').removeClass('invisible');
                     $('#editText').val(newTitle);
                     $('#editRating').val(newRating);
-                });
+                    $('.popUp').removeClass('invisible');
+                    $('.editButton').on('click',function() {
+                        newTitle = $('#editText').val();
+                        newRating = $('#editRating').val();
+                            patchMovie({
+                                "title": newTitle,
+                                "rating": newRating
+                            },    newId)
+                        $('#movieHolder').html("");
+                        getMovies()
+                            .then((movies) => {
+                                makeMoviesAppear(movies)
+                            });
+                        })
+                    })
+
                 $('.trash').click(function () {
                     let idVariable = $(this).parent().attr('id');
                     deleteMovie(idVariable);
@@ -57,6 +73,7 @@ $(document).ready(() => {
                         });
                     })
                 };
+            //wrong place for this
             makeMoviesAppear(movies);
 
 
@@ -68,8 +85,8 @@ $(document).ready(() => {
                     "title": $('#addText').val(),
                     "rating": $('#addSelect').val(),
                 });
-                $('#movieHolder').html("");
-                $('#preloader').removeClass('invisible');
+                // $('#movieHolder').html("");
+                // $('#preloader').removeClass('invisible');
                 getMovies()
                     .then((movies) => {
                         makeMoviesAppear(movies);
@@ -79,7 +96,10 @@ $(document).ready(() => {
             });
 
 
-            //************************
+
+
+
+                //************************
             //      SPECIFY ONE MOVIE
             //************************
 
@@ -122,10 +142,7 @@ $(document).ready(() => {
 //      EDIT MOVIE DATA
 //************************
 
-// patchMovie({
-//   "title": "Darjeeling Limited",
-//   "rating": "5"
-// }, 3).then(getMovies).then((movies) => {
+// .then(getMovies).then((movies) => {
 //   console.log('Here are all the books:');
 //   movies.forEach(({title, rating}) => {
 //     console.log(`${title}, ${rating}`);
