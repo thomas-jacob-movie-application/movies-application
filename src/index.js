@@ -37,14 +37,13 @@ $(document).ready(() => {
                        <i class="fas fa-edit edit"></i>       
                        <h6>${id}</h6>   
                   </div>
-                `);
+                   `);
                 });
-                $('.edit').on('click', function () {
-                    let newId = $(this).parent().children().first().next().next().next().next().next().html();
-                    console.log(newId);
-                    let newTitle = $(this).parent().children().first().next().html().substr(0, 100);
-                    console.log(newTitle);
-                    let newRating = $(this).parent().children().first().next().next().html().substr(7, 2);
+                $(newRating).on('click', function () {
+                    let newId = $(this).parent().children().first().next().next().next().next().next().html().substr(1,1);
+                    let newTitle = $(this).parent().children().first().next().html().substr(0, 15);
+                    let newRating = $(this).parent().children().first().next().next().html().substr(8, 1);
+
                     console.log(newRating);
                     $('#editText').val(newTitle);
                     $('#editRating').val(newRating);
@@ -57,23 +56,29 @@ $(document).ready(() => {
                                 "rating": newRating
                             },    newId)
                         $('#movieHolder').html("");
+                        $('#preloader').removeClass("invisible");
                         getMovies()
                             .then((movies) => {
                                 makeMoviesAppear(movies)
                             });
-                        })
+                        $('#preloader').addClass("invisible");
+
                     })
+                    });
 
                 $('.trash').click(function () {
                     let idVariable = $(this).parent().attr('id');
                     deleteMovie(idVariable);
+                    $('#movieHolder').html("");
+                    $('#preloader').removeClass("invisible");
                     getMovies()
                         .then((movies) => {
                             makeMoviesAppear(movies)
                         });
-                    })
+                    $('#preloader').addClass("invisible");
+
+                })
                 };
-            //wrong place for this
             makeMoviesAppear(movies);
 
 
