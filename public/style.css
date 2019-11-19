@@ -1,10 +1,63 @@
 html, body {
     height: 100%;
 }
+body {
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(to right, azure, lightgrey)
+}
 
 .container {
     position: relative;
     top: 50%;
     transform: translateY(-100%);
     text-align: center;
+}
+.card {
+    height: 500px;
+    position: relative;
+    margin-right: 2%;
+    box-shadow: 0 0 5px 2px darkslategray;
+}
+button {
+    box-shadow: 2px 2px 2px 0.005em darkslategray;
+}
+img  {
+    height: 65%;
+}
+.trash {
+    position: absolute;
+    bottom: 1%;
+    left: 1%;
+
+}
+.jumbotron {
+    height: 20%;
+    background-color: #e24748;
+}
+.invisible {
+    display: none;
+    width: 0;
+    height: 0;
+}
+.edit{
+    position: absolute;
+    bottom: 1%;
+    left: 8%;
+}
+.popUp {
+    width: 40%;
+    height: 30%;
+    background: rgba(250,240,230,0.95);
+    border: 1px solid darkslategray;
+    margin-left: 30%;
+    padding: 2%;
+    position: relative;
+}
+#close {
+    position: absolute;
+    bottom: 1px;
+    right: 10px;
+}
+#addText {
+    border-radius: 5px;
 }
