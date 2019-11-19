@@ -1,23 +1,13 @@
 {
   "movies": [
     {
-      "title": "gladiator",
-      "rating": "1",
-      "id": 1
-    },
-    {
-      "title": "hello",
-      "rating": "1",
-      "id": 2
-    },
-    {
-      "title": "yes please",
-      "rating": "2",
+      "title": "batman",
+      "rating": "3",
       "id": 3
     },
     {
-      "title": "nope",
-      "rating": "2",
+      "title": "batman",
+      "rating": "3",
       "id": 4
     }
   ]

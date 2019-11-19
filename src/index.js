@@ -14,16 +14,16 @@ $(document).ready(() => {
     // turn movie poster into var which contains img src
     // use variable in building divs
 
-
-    getMovies()
-        .then((movies) => {
-            let makeMoviesAppear = (movies) => {
-                $('#preloader').addClass("invisible");
-                movies.forEach(({title, rating, id}) => {
-                    makePoster(title)
-                        .then((data) => {
-                            let image = "'" + data.Poster + "'";
-                            $('#movieHolder').append(`
+function summonAll() {
+        getMovies()
+            .then((movies) => {
+                let makeMoviesAppear = (movies) => {
+                    $('#preloader').addClass("invisible");
+                    movies.forEach(({title, rating, id}) => {
+                        makePoster(title)
+                            .then((data) => {
+                                let image = "'" + data.Poster + "'";
+                                $('#movieHolder').append(`
                         <div class="card col-md-3 p-1" id="${id}">
                            <img src=${image}>
                            <h1>${title}</h1>
@@ -32,43 +32,54 @@ $(document).ready(() => {
                            <i class="fas fa-edit edit"></i>
                         </div>
                        `)
-                        });
-
-                });
-
-            }
-            makeMoviesAppear(movies);
-
-
-$('.edit').on('click', function () {
-    console.log("hi");
-    let newId = $(this).parent().attr('id');
-    console.log(newId);
-    let oldTitle = $(this).parent().children().first().next().html().substr(0, 35);
-    let oldRating = $(this).parent().children().first().next().next().html().substr(0, 1);
-    $('#editText').val(oldTitle);
-    $('#editRating').val(oldRating);
-    $('.popUp').removeClass('invisible');
-    $('.editButton').on('click', function () {
-        $('.popUp').addClass('invisible');
-        let newTitle = $('#editText').val();
-        let newRating = $('#editRating').val();
-        patchMovie({
-            "title": newTitle,
-            "rating": newRating,
-        }, newId);
-        $('#movieHolder').html("");
-        $('#preloader').removeClass('invisible');
-    });
+                            })
+                            .then((data) => {
+                                clickTrashFunction()
+                            })
+                    });
+                };
+                makeMoviesAppear(movies)
+            });
+    }
+summonAll();
 
 
-    $('.trash').click(function () {
-        let idVariable = $(this).parent().attr('id');
-        deleteMovie(idVariable);
-        $('#movieHolder').html("");
-        $('#preloader').removeClass("invisible");
 
-    });
+function clickTrashFunction () {
+    $('.edit').on('click', function () {
+        console.log("hi");
+        let newId = $(this).parent().attr('id');
+        console.log(newId);
+        let oldTitle = $(this).parent().children().first().next().html().substr(0, 35);
+        let oldRating = $(this).parent().children().first().next().next().html().substr(0, 1);
+        $('#editText').val(oldTitle);
+        $('#editRating').val(oldRating);
+        $('.popUp').removeClass('invisible');
+        $('.editButton').on('click', function () {
+            $('.popUp').addClass('invisible');
+            let newTitle = $('#editText').val();
+            let newRating = $('#editRating').val();
+            patchMovie({
+                "title": newTitle,
+                "rating": newRating,
+            }, newId);
+            $('#movieHolder').html("");
+            $('#preloader').removeClass('invisible');
+            summonAll()
+        });
+    })
+        $('.trash').click(function () {
+            let idVariable = $(this).parent().attr('id');
+            deleteMovie(idVariable);
+            $('#movieHolder').html("");
+            $('#preloader').removeClass("invisible");
+            summonAll()
+        });
+    }
+
+
+
+
 
 
     //************************
@@ -119,6 +130,3 @@ $('.edit').on('click', function () {
             })
     });
 })
-
-        })
-});
